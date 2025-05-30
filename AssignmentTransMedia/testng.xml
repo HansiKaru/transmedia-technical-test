@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Board Automation Suite">
+    <test name="BoardTests">
+        <classes>
+            <class name="tests.BoardTest"/>
+        </classes>
+    </test>
+</suite>
