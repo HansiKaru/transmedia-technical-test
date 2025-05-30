@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "410bf72e-4113-40cb-aaf2-163f8a27a34c",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45012437",
+		"_collection_link": "https://hansi-7012296.postman.co/workspace/Hansi's-Workspace~8110da7d-710f-4e58-8c29-ce5236a20660/collection/45012437-410bf72e-4113-40cb-aaf2-163f8a27a34c?action=share&source=collection_link&creator=45012437"
+	},
+	"item": [
+		{
+			"name": "Add List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Extract list ID from response and save to a variable\r",
+							"let responseData = pm.response.json();\r",
+							"pm.environment.set(\"listId\", responseData.id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"boardId\": 3,\r\n  \"name\": \"List 3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"List deleted successfully\", function () {\r",
+							"    pm.response.to.have.status(200); // or 204 depending on your API\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/lists/{{listId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"lists",
+						"{{listId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
